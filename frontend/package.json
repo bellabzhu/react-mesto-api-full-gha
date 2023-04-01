@@ -1,6 +1,6 @@
 {
   "name": "mesto-react",
-  "homepage": "http://bellabzhu.github.io/react-mesto-auth",
+  "homepage": "http://localhost",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

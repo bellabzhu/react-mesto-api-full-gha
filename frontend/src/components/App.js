@@ -104,7 +104,7 @@ function App() {
   function handleLogout () {
     localStorage.removeItem('token');
     setLoggedIn(false);
-    history('/sign-in');
+    history('/signin');
   };
 
   function tokenCheck () {
@@ -200,21 +200,21 @@ function App() {
       <isButtonLoadingContext.Provider value={isButtonLoading}>
 
       <Routes>
-        <Route path="/sign-up" element={
+        <Route path="/signup" element={
           <Register 
             onRegister={handleRegister} 
             headerText="Войти"
-            headerLink="/sign-in"
+            headerLink="/signin"
             loggedIn={loggedIn}
             isInfoToolOpen={isInfoToolOpen}
             onClose={closeAllPopups}
           />
         }/>
 
-        <Route path="/sign-in" element={
+        <Route path="/signin" element={
           <Login 
             onLogin={handleLogin}
-            headerLink="/sign-up"
+            headerLink="/signup"
             headerText="Регистрация"
             isInfoToolOpen={isInfoToolOpen}
             onClose={closeAllPopups}
@@ -241,7 +241,7 @@ function App() {
 
         <Route path="*"
           element={
-            loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
+            loggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />
           } 
         />
         
