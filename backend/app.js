@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { errors, celebrate, Joi } = require('celebrate');
+const cors = require('./middlewares/cors');
 const { limiter } = require('./middlewares/limiter');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(helmet());
 app.use(limiter);
+app.use(cors);
 
 async function start() {
   try {
@@ -58,7 +60,7 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-//app.use(auth);
+app.use(auth);
 
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
