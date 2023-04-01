@@ -1,0 +1,9 @@
+.popup__info-icon {
+  display: block;
+  padding: 0 0 32px 0;
+  margin: 0;
+  width: 120px;
+  height: 120px;
+  background-image: url(../../../images/infotooltip_success.png);
+  background-repeat: no-repeat;
+}

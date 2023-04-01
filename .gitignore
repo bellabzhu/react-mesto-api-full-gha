@@ -2,8 +2,8 @@
 .DS_Store
 .DS_Store?
 
-# Node
 node_modules
+build
 
 # Logs and databases
 *.log

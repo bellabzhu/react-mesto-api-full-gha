@@ -1,0 +1,25 @@
+.button-enter {
+  display: block;
+  margin-top: 216px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  font-family: inherit;
+  height: 50px;
+  width: 100%;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  transition: 0.2s linear;
+}
+
+.button-enter:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .button-enter {
+    font-size: 14px;
+    line-height: 17px;
+    height: 46px;
+  }
+}

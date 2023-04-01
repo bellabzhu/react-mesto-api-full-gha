@@ -1,0 +1,16 @@
+.login__substring {
+  display: block;
+  margin: 0 auto;
+  padding: 15px 0 0 0;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.2s linear;
+}
+
+.login__substring:hover {
+  opacity: 0.8;
+}

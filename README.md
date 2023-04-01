@@ -8,8 +8,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 84.201.136.83
 
-Frontend https://...
+Frontend 
 
 Backend https://...
