@@ -14,6 +14,7 @@ const Error404 = require('./errors/Error404');
 const { auth } = require('./middlewares/auth');
 const { regexURL } = require('./utils/constants');
 const { handleErrors } = require('./middlewares/handleErrors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3001, MONGODB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 mongoose.set('strictQuery', true);
@@ -43,6 +44,8 @@ async function start() {
 
 start();
 
+app.use(requestLogger);
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -69,5 +72,6 @@ app.use('/*', (req, res, next) => {
   next(new Error404('Страница не найдена'));
 });
 
+app.use(errorLogger);
 app.use(errors());
 app.use(handleErrors);
