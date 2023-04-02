@@ -131,3 +131,16 @@ module.exports.updateAvatar = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports.logout = async (req, res, next) => {
+  try {
+    res.status(statusCode.OK)
+      .cookie('token', '', {
+        maxAge: 0,
+        httpOnly: true,
+      })
+      .send({ message: 'Вы успешно разлогинились!' });
+  } catch (err) {
+    next(err);
+  }
+};

@@ -5,7 +5,7 @@ const auth = async (req, res, next) => {
   const { token } = req.cookies;
   let payload;
   try {
-    console.log(token, 'token in auth backend'); // undefine
+    console.log(token, 'token in auth backend');
     payload = jwt.verify(token, 'dev-secret');
     console.log(payload, 'payload');
     req.user = payload;

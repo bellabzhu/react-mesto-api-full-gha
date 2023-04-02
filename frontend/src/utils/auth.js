@@ -7,7 +7,7 @@ class Auth {
 
   register (email, password) {
     return fetch(`${this._config.baseUrl}/signup`, {
-      method: "POST",
+      method: 'POST',
       headers: this._config.headers,
       body: JSON.stringify({
         password: `${password}`,
@@ -20,7 +20,7 @@ class Auth {
 
   login (email, password) {
     return fetch(`${this._config.baseUrl}/signin`, {
-      method: "POST",
+      method: 'POST',
       headers: this._config.headers,
       body: JSON.stringify({
         password: `${password}`,
@@ -31,11 +31,19 @@ class Auth {
     .then(this._checkResponse);
   };
 
+  logout () {
+    return fetch(`${this._config.baseUrl}/logout`, {
+      method: 'DELETE',
+      headers: this._config.headers,
+      credentials: 'include',
+    })
+  }
+
   checkToken () {
     return fetch(`${this._config.baseUrl}/users/me`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       credentials: 'include',

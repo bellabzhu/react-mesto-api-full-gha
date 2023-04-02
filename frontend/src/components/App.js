@@ -36,9 +36,7 @@ function App() {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   useEffect(() => {
-    tokenCheck();
-    console.log(loggedIn, 'loggenIn');
-    console.log(currentUser, 'текущий юзер');
+    //tokenCheck();
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, cards]) => {
         setCards(cards);
@@ -103,20 +101,25 @@ function App() {
   };
 
   function handleLogout () {
-    setLoggedIn(false);
-    history('/signin');
+    auth.logout()
+      .then(() => {
+        setLoggedIn(false);
+        setCurrentUser({name: '', about: '', avatar: '', _id: ''})
+        history('/signin');
+      })
+      .catch((err) => console.log(err))
   };
 
-  function tokenCheck () {
-    const jwt = localStorage.getItem('token');
-    if (!jwt) { return }
-      auth.checkToken(jwt)
-        .then(() => {
-          setLoggedIn(true)
-          history('/')
-        })
-        .catch((err) => console.log(err));
-  };
+  // function tokenCheck () {
+  //   const jwt = localStorage.getItem('token');
+  //   if (!jwt) { return }
+  //     auth.checkToken(jwt)
+  //       .then(() => {
+  //         setLoggedIn(true)
+  //         history('/')
+  //       })
+  //       .catch((err) => console.log(err));
+  // };
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i === currentUser._id);

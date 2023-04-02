@@ -9,7 +9,7 @@ const cors = require('./middlewares/cors');
 const { limiter } = require('./middlewares/limiter');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
-const { login, createUser } = require('./controllers/users');
+const { login, logout, createUser } = require('./controllers/users');
 const Error404 = require('./errors/Error404');
 const { auth } = require('./middlewares/auth');
 const { regexURL } = require('./utils/constants');
@@ -64,7 +64,7 @@ app.use(auth);
 
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
-
+app.delete('/logout', logout);
 app.use('/*', (req, res, next) => {
   next(new Error404('Страница не найдена'));
 });
