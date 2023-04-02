@@ -36,14 +36,17 @@ function App() {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   useEffect(() => {
-    //tokenCheck();
+    if (!loggedIn) { 
+      history('/');
+      return ;
+    }
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, cards]) => {
         setCards(cards);
         setCurrentUser(user);
       })
       .catch((err) => console.log(err))
-  }, []);
+  }, [loggedIn]);
 
   // Close any popup by Escape
   useEffect(() => {
@@ -59,11 +62,6 @@ function App() {
       document.removeEventListener('keydown', closePopupByEsc)
     }
   }, [isOpen]);
-
-  useEffect(() => {
-    if (!loggedIn) return;
-    history('/');
-  }, [loggedIn]);
 
   function handleLogin (email, password) {
     auth.login(email, password)
@@ -109,17 +107,6 @@ function App() {
       })
       .catch((err) => console.log(err))
   };
-
-  // function tokenCheck () {
-  //   const jwt = localStorage.getItem('token');
-  //   if (!jwt) { return }
-  //     auth.checkToken(jwt)
-  //       .then(() => {
-  //         setLoggedIn(true)
-  //         history('/')
-  //       })
-  //       .catch((err) => console.log(err));
-  // };
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i === currentUser._id);
