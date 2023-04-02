@@ -1,6 +1,7 @@
 const allowedCors = [
   'http://localhost:3000',
   'http://localhost:3001',
+  'mongodb://localhost:27017/mestodb',
   'http://mestobella.nomoredomains.work',
   'https://mestobella.nomoredomains.work',
 ];

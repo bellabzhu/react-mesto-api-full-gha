@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-    api.getUserInfo()
+    console.log(loggedIn, 'loggenIn');
     console.log(currentUser, 'текущий юзер');
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, cards]) => {

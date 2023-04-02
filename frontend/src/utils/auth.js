@@ -40,7 +40,7 @@ class Auth {
       },
       credentials: 'include',
     })
-    .then(this._checkResponse);
+    .then(this._checkResponse)
   };
 
   _checkResponse (res) {

@@ -28,7 +28,8 @@ class Api {
       body: JSON.stringify({
         name: newData.name,
         about: newData.about
-      })
+      }),
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
@@ -39,7 +40,8 @@ class Api {
       headers: this._config.headers,
       body: JSON.stringify({
         avatar: avatarData.avatar
-      })
+      }),
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
@@ -51,7 +53,8 @@ class Api {
       body: JSON.stringify({
         name: newCardData.name,
         link: newCardData.link
-      })
+      }),
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
@@ -62,7 +65,8 @@ class Api {
       headers: this._config.headers,
       body: JSON.stringify({
         likes: whoLiked
-      })
+      }),
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
@@ -71,6 +75,7 @@ class Api {
     return fetch(`${this._config.cards}/${cardId}`, {
       method: 'DELETE',
       headers: this._config.headers,
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
