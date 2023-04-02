@@ -30,15 +30,17 @@ function App() {
   const [isInfoToolSuccess, setIsInfoToolSuccess] = useState(false);
   const isOpen = isEditProfilePopupOpen || isAddPlacePopupOpen || isEditAvatarPopupOpen || isImagePopupOpen || isConfirmationPopupOpen || isInfoToolOpen;
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState({name: '', about: '', avatar: '', cohort: '', _id: ''})
+  const [currentUser, setCurrentUser] = useState({name: '', about: '', avatar: '', _id: ''})
   const [userEmail, setUserEmail] = useState('');
   const [cards, setCards] = useState([]);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
 
   useEffect(() => {
     tokenCheck();
+    api.getUserInfo()
+    console.log(currentUser, 'текущий юзер');
     Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then( ([user, cards]) => {
+      .then(([user, cards]) => {
         setCards(cards);
         setCurrentUser(user);
       })
@@ -67,9 +69,8 @@ function App() {
 
   function handleLogin (email, password) {
     auth.login(email, password)
-      .then((data) => {
-        localStorage.setItem('token', data.token);
-        setUserEmail(email)
+      .then(() => {
+        setUserEmail(email);
         setLoggedIn(true);
         history('/');
       })
@@ -102,7 +103,6 @@ function App() {
   };
 
   function handleLogout () {
-    localStorage.removeItem('token');
     setLoggedIn(false);
     history('/signin');
   };
@@ -221,7 +221,10 @@ function App() {
           />} 
         />
 
-          <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>   
+          <Route element={<ProtectedRoute 
+          loggedIn={loggedIn}
+
+          />}>   
             <Route exact path="/" element={
                   <Main
                     loggedIn={loggedIn}

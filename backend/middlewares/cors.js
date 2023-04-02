@@ -1,6 +1,6 @@
 const allowedCors = [
   'http://localhost:3000',
-  'http://localhost:3030',
+  'http://localhost:3001',
   'http://mestobella.nomoredomains.work',
   'https://mestobella.nomoredomains.work',
 ];
@@ -14,6 +14,7 @@ module.exports = (req, res, next) => {
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', true);
+    res.header('credentials', true);
   }
 
   if (req.method === 'OPTIONS') {

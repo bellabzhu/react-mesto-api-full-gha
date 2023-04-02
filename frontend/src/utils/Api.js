@@ -5,22 +5,24 @@ class Api {
     this._config = apiConfig;
   };
 
-  getInitialCards() {
-    return fetch(this._config.fetchCards, {
-        headers: this._config.headers
+  getInitialCards () {
+    return fetch(this._config.cards, {
+        headers: this._config.headers,
+        credentials: 'include',
     })
     .then(this._checkResponse);
   };
 
   getUserInfo () {
-    return fetch(this._config.fetchUserInfo, {
-      headers: this._config.headers
+    return fetch(this._config.userInfo, {
+      headers: this._config.headers,
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
 
   setUserInfo (newData) {
-    return fetch(this._config.fetchUserInfo, {
+    return fetch(this._config.userInfo, {
       method: 'PATCH',
       headers: this._config.headers,
       body: JSON.stringify({
@@ -32,7 +34,7 @@ class Api {
   };
 
   setUserAvatar (avatarData) {
-    return fetch(this._config.fetchAvatar, {
+    return fetch(this._config.avatar, {
       method: 'PATCH',
       headers: this._config.headers,
       body: JSON.stringify({
@@ -43,7 +45,7 @@ class Api {
   };
 
   addCard (newCardData) {
-    return fetch(this._config.fetchCards, {
+    return fetch(this._config.cards, {
       method: 'POST',
       headers: this._config.headers,
       body: JSON.stringify({
@@ -55,7 +57,7 @@ class Api {
   };
 
   changeLikeCardStatus (cardId, isLiked, whoLiked) {
-    return fetch(`${this._config.fetchCards}/${cardId}/likes`, {
+    return fetch(`${this._config.cards}/${cardId}/likes`, {
       method: isLiked ? 'DELETE' : 'PUT',
       headers: this._config.headers,
       body: JSON.stringify({
@@ -66,7 +68,7 @@ class Api {
   };
 
   delCard (cardId) {
-    return fetch(`${this._config.fetchCards}/${cardId}`, {
+    return fetch(`${this._config.cards}/${cardId}`, {
       method: 'DELETE',
       headers: this._config.headers,
     })

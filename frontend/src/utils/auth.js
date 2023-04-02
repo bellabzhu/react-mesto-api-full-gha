@@ -1,41 +1,44 @@
-import { authConfig } from './constants.js'
+import { apiConfig } from './constants.js'
 
 class Auth {
-  constructor (authConfig) {
-    this._authConfig = authConfig;
+  constructor (apiConfig) {
+    this._config = apiConfig;
   }
 
   register (email, password) {
-    return fetch(`${this._authConfig.baseUrl}/signup`, {
+    return fetch(`${this._config.baseUrl}/signup`, {
       method: "POST",
-      headers: this._authConfig.headers,
+      headers: this._config.headers,
       body: JSON.stringify({
         password: `${password}`,
         email: `${email}`
       }),
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
 
   login (email, password) {
-    return fetch(`${this._authConfig.baseUrl}/signin`, {
+    return fetch(`${this._config.baseUrl}/signin`, {
       method: "POST",
-      headers: this._authConfig.headers,
+      headers: this._config.headers,
       body: JSON.stringify({
         password: `${password}`,
         email: `${email}`
       }),
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
 
-  checkToken (jwt) {
-    return fetch(`${this._authConfig.baseUrl}/users/me`, {
+  checkToken () {
+    return fetch(`${this._config.baseUrl}/users/me`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization" : `Bearer ${jwt}`
-      }
+        Accept: "application/json",
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
     })
     .then(this._checkResponse);
   };
@@ -48,4 +51,4 @@ class Auth {
   }
 }
 
-export const auth = new Auth (authConfig);
+export const auth = new Auth (apiConfig);
