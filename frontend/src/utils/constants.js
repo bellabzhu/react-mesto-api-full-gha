@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3001';
+const baseUrl = 'api.mestobella.nomoredomains.work';
 
 export const apiConfig = {
   baseUrl: baseUrl,

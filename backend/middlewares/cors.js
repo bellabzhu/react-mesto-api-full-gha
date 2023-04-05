@@ -4,6 +4,8 @@ const allowedCors = [
   'mongodb://localhost:27017/mestodb',
   'http://mestobella.nomoredomains.work',
   'https://mestobella.nomoredomains.work',
+  'http://api.mestobella.nomoredomains.work',
+  'https://api.mestobella.nomoredomains.work',
 ];
 
 module.exports = (req, res, next) => {
