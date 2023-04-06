@@ -1,4 +1,4 @@
-const baseUrl = 'api.mestobella.nomoredomains.work';
+const baseUrl = 'https://api.mestobella.nomoredomains.work';
 
 export const apiConfig = {
   baseUrl: baseUrl,
