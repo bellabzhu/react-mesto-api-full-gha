@@ -6,8 +6,8 @@
 
 ## Ссылки на проект
 
-IP-адрес: 84.201.136.83
+IP 84.201.136.83
 
-Frontend: https://mestobella.nomoredomains.work
+Frontend https://mestobella.nomoredomains.work
 
-Backend: https://api.mestobella.nomoredomains.work
+Backend https://api.mestobella.nomoredomains.work
