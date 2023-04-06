@@ -16,7 +16,7 @@ const { regexURL } = require('./utils/constants');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3001, MONGODB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 mongoose.set('strictQuery', true);
 
 const app = express();
