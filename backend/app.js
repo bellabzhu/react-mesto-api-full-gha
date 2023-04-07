@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { errors, celebrate, Joi } = require('celebrate');
-// const cors = require('./middlewares/cors');
 const cors = require('cors');
 const { limiter } = require('./middlewares/limiter');
 const userRouter = require('./routes/users');

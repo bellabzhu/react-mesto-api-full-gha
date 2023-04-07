@@ -6,7 +6,7 @@ class Auth {
   }
 
   register (email, password) {
-    return fetch('https://api.mestobella.nomoredomains.work/signup', {
+    return fetch(`${this._config.baseUrl}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ class Auth {
   };
 
   login (email, password) {
-    return fetch('https://api.mestobella.nomoredomains.work/signin', {
+    return fetch(`${this._config.baseUrl}/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
