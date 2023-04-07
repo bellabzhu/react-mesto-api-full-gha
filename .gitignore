@@ -1,9 +1,12 @@
-# MacOs
-.DS_Store
-.DS_Store?
+*
+!/frontend/*
+!/backend/*
 
 node_modules
 build
 
-# Logs and databases
+.DS_Store
+.DS_Store?
+
 *.log
+logs
