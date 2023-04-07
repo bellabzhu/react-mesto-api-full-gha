@@ -6,9 +6,11 @@ class Auth {
   }
 
   register (email, password) {
-    return fetch(`${this._config.baseUrl}/signup`, {
+    return fetch('https://api.mestobella.nomoredomains.work/signup', {
       method: 'POST',
-      headers: this._config.headers,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         password: `${password}`,
         email: `${email}`
@@ -19,9 +21,11 @@ class Auth {
   };
 
   login (email, password) {
-    return fetch(`${this._config.baseUrl}/signin`, {
+    return fetch('https://api.mestobella.nomoredomains.work/signin', {
       method: 'POST',
-      headers: this._config.headers,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         password: `${password}`,
         email: `${email}`
@@ -34,7 +38,9 @@ class Auth {
   logout () {
     return fetch(`${this._config.baseUrl}/logout`, {
       method: 'DELETE',
-      headers: this._config.headers,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       credentials: 'include',
     })
   }
