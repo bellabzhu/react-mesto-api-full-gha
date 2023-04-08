@@ -20,7 +20,7 @@ module.exports.createCard = async (req, res, next) => {
   try {
     const { name, link } = req.body;
     const newCard = await Card.create({ name, link, owner: req.user._id });
-    res.status(statusCode.OK).send(newCard);
+    res.status(statusCode.OK_NEW).send(newCard);
   } catch (err) {
     next(err);
   }
@@ -37,7 +37,7 @@ module.exports.deleteCard = async (req, res, next) => {
       next(new Error403('Это не ваша карточка! Удаляйте свои!'));
       return;
     }
-    const deletedCard = await Card.findByIdAndRemove(req.params.cardId);
+    const deletedCard = card.deleteOne();
     res.status(statusCode.OK).send(deletedCard);
   } catch (err) {
     next(err);

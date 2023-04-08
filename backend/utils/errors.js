@@ -1,4 +1,5 @@
 const OK = 200;
+const OK_NEW = 201;
 const BAD_REQUEST = 400;
 const UNAUTHORIZED = 401;
 const FORBIDDEN = 403;
@@ -9,6 +10,7 @@ const INTERNAL_SERVER = 500;
 
 module.exports.statusCode = {
   OK,
+  OK_NEW,
   BAD_REQUEST,
   NOT_FOUND,
   METHOD_NOT_ALLOWED,
