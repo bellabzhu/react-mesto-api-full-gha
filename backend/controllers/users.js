@@ -117,16 +117,11 @@ module.exports.updateUser = async (req, res, next) => {
       req.user._id,
       req.body,
       mongoUpdateConfig,
-    )
-    if (!user) {
-      next(new Error400('Переданы некорректные данные при создании пользователя.'));
-    }
+    );
     res.status(statusCode.OK).send(user);
   } catch (err) {
     if (err instanceof mongoose.Error.ValidationError) {
-      next(new Error400('Переданы некорректные данные при создании пользователя.'));
-    } else if (err.code === 11000) {
-      next(new Error409('Пользователь с таким email уже зарегистрирован.'));
+      next(new Error400('Переданы некорректные данные.'));
     } else {
       next(err);
     }
@@ -143,7 +138,11 @@ module.exports.updateAvatar = async (req, res, next) => {
     );
     res.status(statusCode.OK).send(user);
   } catch (err) {
-    next(err);
+    if (err instanceof mongoose.Error.ValidationError) {
+      next(new Error400('Переданы некорректные данные.'));
+    } else {
+      next(err);
+    }
   }
 };
 
