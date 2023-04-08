@@ -7,6 +7,7 @@ const Error404 = require('../errors/Error404');
 const Error409 = require('../errors/Error409');
 const { statusCode } = require('../utils/errors');
 const User = require('../models/user');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const mongoUpdateConfig = { new: true, runValidators: true };
