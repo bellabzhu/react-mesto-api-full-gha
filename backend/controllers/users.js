@@ -24,11 +24,15 @@ module.exports.getUsers = async (req, res, next) => {
 module.exports.getCurrentUser = async (req, res, next) => {
   try {
     const userId = req.user._id;
+    if (!userId) {
+      next(new Error404('Пользователь c таким id не найден.'));
+      return;
+    };
     const user = await User.findById(userId);
     res.status(statusCode.OK).send(user);
   } catch (err) {
     next(err);
-  }
+  };
 };
 
 module.exports.getUser = async (req, res, next) => {
@@ -37,11 +41,11 @@ module.exports.getUser = async (req, res, next) => {
     if (!user) {
       next(new Error404('Пользователь c таким id не найден.'));
       return;
-    }
+    };
     res.status(statusCode.OK).send(user);
   } catch (err) {
     next(err);
-  }
+  };
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -85,12 +89,12 @@ module.exports.login = async (req, res, next) => {
     if (!user) {
       next(new Error401('Неправильная почта или пароль'));
       return;
-    }
+    };
     const matched = await bcrypt.compare(password, user.password);
     if (!matched) {
       next(new Error401('Неправильная почта или пароль'));
       return;
-    }
+    };
     const token = await jwt.sign(
       { _id: user._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'you-shall-not-pass-hooman',
