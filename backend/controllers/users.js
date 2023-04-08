@@ -7,6 +7,7 @@ const Error404 = require('../errors/Error404');
 const Error409 = require('../errors/Error409');
 const { statusCode } = require('../utils/errors');
 const User = require('../models/user');
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const mongoUpdateConfig = { new: true, runValidators: true };
 
@@ -91,7 +92,7 @@ module.exports.login = async (req, res, next) => {
     }
     const token = await jwt.sign(
       { _id: user._id },
-      'dev-secret',
+      NODE_ENV === 'production' ? JWT_SECRET : 'you-shall-not-pass-hooman',
       { expiresIn: '7d' },
     );
     res.status(statusCode.OK)
