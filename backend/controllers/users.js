@@ -45,7 +45,7 @@ module.exports.getUser = async (req, res, next) => {
     res.status(statusCode.OK).send(user);
   } catch (err) {
     next(err);
-  };
+  }
 };
 
 module.exports.createUser = (req, res, next) => {
