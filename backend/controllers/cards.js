@@ -27,7 +27,7 @@ module.exports.createCard = async (req, res, next) => {
     } else if (err instanceof mongoose.Error.ValidationError) {
       next(new Error400('Переданы некорректные данные при создании карточки.'));
     } else {
-    next(err);
+      next(err);
     }
   }
 };
@@ -72,7 +72,7 @@ module.exports.likeCard = async (req, res, next) => {
     if (err instanceof mongoose.Error.CastError) {
       next(new Error400('Неверный формат у id карточки.'));
     } else if (err instanceof mongoose.Error.ValidationError) {
-        next(new Error400('Переданы некорректные данные.'));
+      next(new Error400('Переданы некорректные данные.'));
     } else {
       next(err);
     }
@@ -96,8 +96,8 @@ module.exports.deleteLikeCard = async (req, res, next) => {
       next(new Error400('Неверный формат у id карточки.'));
     } else if (err instanceof mongoose.Error.ValidationError) {
       next(new Error400('Переданы некорректные данные.'));
-  } else {
+    } else {
     next(err);
-  }
+    }
   }
 };
