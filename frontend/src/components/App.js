@@ -42,7 +42,7 @@ function App() {
     }
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, cards]) => {
-        setCards(cards);
+        setCards(cards.reverse());
         setCurrentUser(user);
       })
       .catch((err) => console.log(err))
@@ -147,7 +147,7 @@ function App() {
   function handleAddPlace (card) {
     setIsButtonLoading(true);
     api.addCard(card)
-      .then((cardData) => setCards([cardData, ...cards]))
+      .then((cardData) => setCards([ cardData, ...cards ]))
       .then(() => closeAllPopups())
       .catch((err) => console.log(err))
       .finally(() => setIsButtonLoading(false))
