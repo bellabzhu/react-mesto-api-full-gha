@@ -97,7 +97,7 @@ module.exports.deleteLikeCard = async (req, res, next) => {
     } else if (err instanceof mongoose.Error.ValidationError) {
       next(new Error400('Переданы некорректные данные.'));
     } else {
-    next(err);
+      next(err);
     }
   }
 };
