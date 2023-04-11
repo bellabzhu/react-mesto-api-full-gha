@@ -31,7 +31,11 @@ module.exports.getCurrentUser = async (req, res, next) => {
     const user = await User.findById(userId);
     res.status(statusCode.OK).send(user);
   } catch (err) {
-    next(err);
+    if (err instanceof mongoose.Error.CastError) {
+      next(new Error400('Неверный формат данных.'));
+    } else {
+      next(err);
+    }
   }
 };
 

@@ -7,6 +7,7 @@ const auth = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) {
     next(new Error401('Необходима авторизация.'));
+    return;
   }
   let payload;
   try {
